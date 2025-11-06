@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block form %}
+  <form method="POST" action="/create">
+    <textarea
+      name="message"
+      id="message"
+      placeholder="Enter your message"
+      required
+    ></textarea>
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}

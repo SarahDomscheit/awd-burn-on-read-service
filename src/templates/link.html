@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block form %}
+  <div>
+    <h2>Your message has been saved!</h2>
+    <p>Share this link with someone (it can only be viewed once):</p>
+    <input
+      id="shareLink"
+      type="text"
+      value="{{ shareLink }}"
+      readonly
+      onclick="this.select();"
+    />
+    <div class="btn-group">
+      <button id="copyBtn" class="secondary" type="button">Copy</button>
+    </div>
+  </div>
+  <script>
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const link = document.getElementById("shareLink");
+      try {
+        await navigator.clipboard.writeText(link.value);
+        alert("Link copied!");
+      } catch (error) {
+        link.select();
+        document.execCommand("copy");
+      }
+    });
+  </script>
+{% endblock %}
